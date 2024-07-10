@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://y7e312ddq00c"]
+[gd_scene load_steps=97 format=3 uid="uid://y7e312ddq00c"]
 
 [ext_resource type="Texture2D" uid="uid://da4xu6rvturv3" path="res://assets/Asset_Pack/Pack Content/Front animations/spr_player_front_idle.png" id="1_6rvo0"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fwru3"]
@@ -411,7 +411,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"back_idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -530,7 +530,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"front_idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -620,7 +620,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"side_idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -646,20 +646,29 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D"]
-script = ExtResource("1_fwru3")
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj0lq"]
+radius = 2.23607
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="player" type="CharacterBody2D"]
+collision_layer = 3
+script = ExtResource("1_fwru3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_5ybq8")
-animation = &"back_walk"
+animation = &"side_idle"
 autoplay = "front_idle"
-frame_progress = 0.0115745
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_uj0lq")
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]

@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+var enemy_inattack_range = false
+var enemy_attack_cooldown = true
+var health = 100
+var player_alive = true
+
 const speed = 6000
 var current_dir = "none"
 
@@ -63,3 +68,11 @@ func play_anim(movement):
 			anim.play("back_walk")
 		elif movement == 0:
 			anim.play("back_idle")
+
+func _on_player_hitbox_body_entered(body):
+	pass # Replace with function body.
+
+
+
+func _on_player_hitbox_body_exited(body):
+	pass # Replace with function body.
